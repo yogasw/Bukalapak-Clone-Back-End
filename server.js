@@ -8,22 +8,33 @@ const bodyParser = require('body-parser');
 const routeUsers = require('./routes/users');
 const port = process.env.SERVER_PORT;
 const cors = require('cors');
+//const cors = require('../rds-combined-ca-bundle.pem');
 
 //Configure Database
+var fs = require('fs');
+var ca = [fs.readFileSync('../rds-combined-ca-bundle.pem')];
 
 const dbConfig = require('./config/database');
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
-mongoose.connect(dbConfig.DB, {
+// mongoose.connect(dbConfig.DB, {
+//     sslCA:ca,
+//     useNewUrlParser: true,
+//     useFindAndModify: false
+// }).then(() => {
+//     console.log('connection success');
+// }).catch(err => {
+//     console.log(`connection error `, err);
+//     process.exit();
+// });
+var options = {
+    sslCA: ca,
     useNewUrlParser: true,
-    useFindAndModify: false
-}).then(() => {
-    console.log('connection success');
-}).catch(err => {
-    console.log(`connection error `, err);
-    process.exit();
-});
-
+};
+mongoose.connect(dbConfig.DB,options);
+mongoose.Promise = global.Promise;
+let db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 //End Configure Database
 
 //Start Config CORS
