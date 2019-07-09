@@ -5,7 +5,6 @@ require('dotenv').config({
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-const routeUsers = require('./routes/users');
 const port = process.env.SERVER_PORT;
 const cors = require('cors');
 //const cors = require('../rds-combined-ca-bundle.pem');
@@ -17,24 +16,17 @@ var ca = [fs.readFileSync('../rds-combined-ca-bundle.pem')];
 const dbConfig = require('./config/database');
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
-// mongoose.connect(dbConfig.DB, {
-//     sslCA:ca,
-//     useNewUrlParser: true,
-//     useFindAndModify: false
-// }).then(() => {
-//     console.log('connection success');
-// }).catch(err => {
-//     console.log(`connection error `, err);
-//     process.exit();
-// });
-var options = {
-    sslCA: ca,
+mongoose.connect(dbConfig.DB, {
+    dbName: 'bukalapak',
     useNewUrlParser: true,
-};
-mongoose.connect(dbConfig.DB,options);
-mongoose.Promise = global.Promise;
-let db = mongoose.connection;
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+    useFindAndModify: false
+}).then(() => {
+    console.log('connection success');
+}).catch(err => {
+    console.log(`connection error `, err);
+    process.exit();
+});
+
 //End Configure Database
 
 //Start Config CORS
@@ -61,8 +53,16 @@ app.use(
     //use CORS
     cors(corsOptions),
 );
+const routeUsers = require('./routes/users');
+const routeProduct =  require('./routes/product');
+const routeAddress =  require('./routes/address');
+const routeCategories =  require('./routes/categories');
 
 routeUsers(app);
+routeProduct(app);
+routeAddress(app);
+routeCategories(app);
+
 app.get('/', function (req, res) {
     res.send('Welcome to server');
 });

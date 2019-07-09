@@ -15,7 +15,7 @@ const UsersSchema = new mongoose.Schema({
             type: String,
             require: true
         },
-        image_url: {
+        imageUrl: {
             type: String
         },
         phone: {
@@ -32,6 +32,9 @@ const UsersSchema = new mongoose.Schema({
         },
         address: {
             type: String
+        },
+        wishlist:{
+            type:Array
         }
     },
     {
