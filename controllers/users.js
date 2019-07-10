@@ -1,16 +1,20 @@
 'use strict';
 const response = require('../libs/response');
 const UserModels =  require('../models/users');
+const helper = require('../libs/helper');
+const _ = require('lodash');
 
 exports.getUsers = async (req, res) => {
+    const token = helper.decodeJwt(req.header('x-auth-token'));
 
-    await UserModels.find()
-        .sort({createdAt: 'desc'})
+    if (!token._id) {
+        return response.error('error get data users', res);
+    }
+    await UserModels.findOne({_id: token._id})
         .then(data => {
             let json = {
-                status: 200,
                 message: 'success get data users',
-                data: data
+                data: _.pick(data, ['_id', 'name', 'username', 'email', 'imageUrl', 'phone', 'gender', 'referral', 'birth', 'address'])
             };
             response.success(json, res)
         })
@@ -26,37 +30,47 @@ exports.getUsers = async (req, res) => {
 };
 
 exports.updateUsers = async function (req, res) {
-    let name = req.body.name;
-    let username = req.body.username;
-    let email = req.body.email;
-    let imageUrl = req.body.image_url;
-    let phone = req.body.phone;
-    let gender = req.body.gender;
-    let referral = req.body.referral;
-    let birth = req.body.birth;
-    let address = req.body.address;
-    let wishlist = req.body.wishlist;
-    const user = new UserModels({
-        name, username, email, imageUrl, phone, gender, referral, birth, address,wishlist
-    });
+    const token = helper.decodeJwt(req.header('x-auth-token'));
 
-    await user.save()
-        .then(data => {
-            let json = {
-                status: 200,
-                message: 'success add data users',
-                data: data
-            };
-            response.success(json, res)
-        })
-        .catch(err => {
-            let json = {
-                status: 500,
-                message: 'Error add data users'
-            };
+    if (!token._id) {
+        return response.error('error update data users', res);
+    }
 
-            response.withCode(500,json,res)
-        })
+    let check = await UserModels.findOne({_id: token._id});
 
+    if (check) {
+
+        await UserModels.findOneAndUpdate(
+            {
+                _id: token._id
+            }, req.body)
+            .then((data) => {
+                if (!data) {
+                    response.error('error update data users', res);
+                }
+            }).catch((e) => {
+                response.error('error update data users', res);
+            });
+
+        await UserModels.findOne({_id: token._id})
+            .then(data => {
+                let json = {
+                    message: 'update data success',
+                    data: _.pick(data, ['_id', 'name', 'username', 'email', 'imageUrl', 'phone', 'gender', 'referral', 'birth', 'address'])
+                };
+                response.success(json, res)
+            })
+            .catch(err => {
+                let json = {
+                    status: 500,
+                    message: 'error update data users '
+                };
+                console.log("masuk");
+                //console.log(err);
+                response.error(json, res);
+            })
+    } else {
+        return response.error("error update data users", res);
+    }
 
 };

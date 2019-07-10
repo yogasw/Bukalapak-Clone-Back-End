@@ -9,49 +9,80 @@ const UsersSchema = new mongoose.Schema({
         name: {
             type: String,
             required: true,
-            default:''
+            default: ''
         },
         username: {
             type: String,
             required: true,
-            default:''
+            default: ''
         },
         email: {
             type: String,
             required: true,
-            default:''
+            default: ''
         },
         imageUrl: {
             type: String,
-            default:''
+            default: ''
         },
         phone: {
             type: String,
-            default:''
+            default: ''
         },
         gender: {
             type: String,
-            default:''
+            default: ''
         },
         referral: {
             type: String,
-            default:''
+            default: ''
         },
         birth: {
             type: String,
-            default:''
+            default: ''
+        },
+        nameStore: {
+            type: String,
+            default: ''
         },
         address: {
             type: String,
-            default:''
+            default: ''
         },
+        /* [{
+             name:{
+                 type: String,
+                 default:'1'
+             },
+             phoneNumber:{
+                 type: String,
+                 default:'2'
+             },
+             usersId:{
+                 type: String,
+                 default:''
+             },
+             address:{
+                 type: String,
+                 default:''
+             },
+             receiver:{
+                 type: String,
+                 default:''
+             },
+             zipCode:{
+                 type: String,
+                 default:''
+             },
+         }]*/
+
         password: {
             type: String,
-            default:''
+            default: ''
         },
         wishlist: {
             type: Array,
-            default:[]
+            default: []
         }
     },
     {

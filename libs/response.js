@@ -2,7 +2,7 @@
 
 exports.success = function (values, res) {
     const data = {
-        status:200,
+        status: 'success',
         value:values
     };
     res.status(200);
@@ -10,9 +10,9 @@ exports.success = function (values, res) {
     res.end();
 };
 
-exports.withCode = function (code, value, res) {
+exports.withCode = function (code, status, value, res) {
     const data = {
-        status: code,
+        status: status,
         values: value
     };
     res.status(code);
@@ -20,12 +20,12 @@ exports.withCode = function (code, value, res) {
     res.end();
 };
 
-exports.error = function (res) {
+exports.error = function (string = 'Server Error', res) {
     const data = {
-        status: 500,
-        values: "System Error",
+        status: 'failed',
+        values: string
     };
-    res.status(500);
+    res.status(400);
     res.json(data);
     res.end();
 };

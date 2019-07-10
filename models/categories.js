@@ -6,15 +6,9 @@ const Categories = new mongoose.Schema({
         type: String,
         require: true
     },
-    subCategories: {
-        type: Array,
-        require: true
-    },
-    specification: {
-        type: Array,
-        require: true
-    },
-
+    children: [{
+        name: String
+    }]
 }, {
     timestamps: true
 });
