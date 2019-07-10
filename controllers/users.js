@@ -26,16 +26,16 @@ exports.getUsers = async (req, res) => {
 };
 
 exports.updateUsers = async function (req, res) {
-    let name = req.body.name || 1;
-    let username = req.body.username||2 ;
-    let email = req.body.email||3;
-    let imageUrl = req.body.image_url||4;
-    let phone = req.body.phone||5;
-    let gender = req.body.gender||6;
-    let referral = req.body.referral||7;
-    let birth = req.body.birth||8;
-    let address = req.body.address||9;
-    let wishlist = req.body.wishlist||[1,2,3,4,5];
+    let name = req.body.name;
+    let username = req.body.username;
+    let email = req.body.email;
+    let imageUrl = req.body.image_url;
+    let phone = req.body.phone;
+    let gender = req.body.gender;
+    let referral = req.body.referral;
+    let birth = req.body.birth;
+    let address = req.body.address;
+    let wishlist = req.body.wishlist;
     const user = new UserModels({
         name, username, email, imageUrl, phone, gender, referral, birth, address,wishlist
     });

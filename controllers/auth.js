@@ -1,8 +1,9 @@
 'use strict';
 const response = require('../libs/response');
 const userModel = require('../models/users');
-const authModel = require('../models/auth');
+//const authModel = require('../models/auth');
 const bcrypt = require('bcrypt');
+const _ = require('lodash');
 
 exports.login = async (req, res) => {
     //declare http request
@@ -17,7 +18,7 @@ exports.login = async (req, res) => {
 
     //if check false
     if (!check) {
-        return res.stat(400).json({
+        return res.status(400).json({
             status: 400,
             message: 'User not found.'
         })
@@ -31,14 +32,17 @@ exports.login = async (req, res) => {
             message: 'Wrong password.'
         })
     }
+    const token = check.generateAuthToken();
+    res.header('x-auth-token', token);
 
     res.json({
         status:200,
-        data:check,
+        data: _.pick(check, ['_id', 'username', 'email']),
     });
 
     res.end()
 };
+
 exports.register = async (req, res) => {
     let name = req.body.name;
     let email = req.body.email;
@@ -60,6 +64,7 @@ exports.register = async (req, res) => {
         $or: [{email: req.body.email},
             {username: req.body.username}]
     });
+
     if (check) {
         let json = {
             status: 200,
@@ -72,15 +77,19 @@ exports.register = async (req, res) => {
                 let json = {
                     status: 200,
                     message: 'register success',
-                    data: val
+                    data: _.pick(val, ['_id', 'name', 'username', 'email', 'phone'])
                 };
-                return response.success(json, res);
+
+                const token = data.generateAuthToken();
+                res.header('x-auth-token', token);
+                res.json(json);
+                res.end()
 
             })
             .catch(err => {
                 let json = {
                     status: 500,
-                    message: 'failed register user :' + err + data,
+                    message: 'failed register user' + err,
                 };
 
                 return response.withCode(500, json, res);

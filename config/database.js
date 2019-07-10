@@ -1,3 +1,4 @@
+
 'use strict';
 module.exports = {
     DB: 'mongodb+srv://bukalapak:e0aCrlkEEVLoSZ1Z@cluster0-v1bak.mongodb.net/test?retryWrites=true&w=majority'

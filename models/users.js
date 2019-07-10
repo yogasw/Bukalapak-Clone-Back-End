@@ -3,6 +3,8 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const saltRounds = 8;
+const jwt = require('jsonwebtoken');
+
 const UsersSchema = new mongoose.Schema({
         name: {
             type: String,
@@ -57,10 +59,12 @@ const UsersSchema = new mongoose.Schema({
     });
 
 UsersSchema.pre('save', function (next) {
-    console.log(this.password);
     this.password = bcrypt.hashSync(this.password, saltRounds);
     next()
 });
 
+UsersSchema.methods.generateAuthToken = function () {
+    return jwt.sign({_id: this._id}, process.env.PRIMARY_KEY);
+};
 
 module.exports = mongoose.model('Users', UsersSchema);
