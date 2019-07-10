@@ -2,9 +2,42 @@
 const response = require('../libs/response');
 const userModel = require('../models/users');
 const authModel = require('../models/auth');
+const bcrypt = require('bcrypt');
 
 exports.login = async (req, res) => {
+    //declare http request
+    let username = req.body.username;
+    let password = req.body.password;
 
+    //search user by username and email
+    let check = await userModel.findOne({
+        $or: [{username: username},
+            {email: username}]
+    });
+
+    //if check false
+    if (!check) {
+        return res.stat(400).json({
+            status: 400,
+            message: 'User not found.'
+        })
+    }
+
+    //validate password
+    const validPassword = await bcrypt.compare(password, check.password);
+    if (!validPassword){
+        return res.status(400).json({
+            status:400,
+            message: 'Wrong password.'
+        })
+    }
+
+    res.json({
+        status:200,
+        data:check,
+    });
+
+    res.end()
 };
 exports.register = async (req, res) => {
     let name = req.body.name;
@@ -24,12 +57,9 @@ exports.register = async (req, res) => {
     });
 
     let check = await userModel.findOne({
-        $or: [{
-            email: req.body.email,
-            username: req.body.username
-        }]
+        $or: [{email: req.body.email},
+            {username: req.body.username}]
     });
-
     if (check) {
         let json = {
             status: 200,

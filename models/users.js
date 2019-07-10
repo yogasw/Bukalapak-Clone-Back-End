@@ -1,7 +1,8 @@
 'use strict';
 
 const mongoose = require('mongoose');
-
+const bcrypt = require('bcrypt');
+const saltRounds = 8;
 const UsersSchema = new mongoose.Schema({
         name: {
             type: String,
@@ -54,5 +55,12 @@ const UsersSchema = new mongoose.Schema({
     {
         timestamps: true
     });
+
+UsersSchema.pre('save', function (next) {
+    console.log(this.password);
+    this.password = bcrypt.hashSync(this.password, saltRounds);
+    next()
+});
+
 
 module.exports = mongoose.model('Users', UsersSchema);
