@@ -4,8 +4,6 @@
     <list default="true" id="f71c8331-86a5-44e4-8dbd-cdd908006c19" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/auth.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/users.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -24,11 +22,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/users.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="91">
-              <caret line="135" column="22" lean-forward="true" selection-start-line="135" selection-start-column="22" selection-end-line="135" selection-end-column="22" />
-              <folding>
-                <element signature="e#219#870#0" />
-              </folding>
+            <state relative-caret-position="2295">
+              <caret line="135" column="22" selection-start-line="135" selection-start-column="22" selection-end-line="135" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -36,8 +31,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/controllers/auth.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="516">
-              <caret line="102" column="2" lean-forward="true" selection-start-line="102" selection-start-column="2" selection-end-line="102" selection-end-column="2" />
+            <state relative-caret-position="238">
+              <caret line="17" column="45" selection-start-line="17" selection-start-column="45" selection-end-line="17" selection-end-column="45" />
+              <folding>
+                <element signature="e#1254#2621#0" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -112,7 +110,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -123,19 +120,20 @@
             <path>
               <item name="Bukalapak-Clone-Back-End-master" type="b2602c69:ProjectViewProjectNode" />
               <item name="Bukalapak-Clone-Back-End-master" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
+              <item name="controllers" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Bukalapak-Clone-Front-End" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RecentsManager">
@@ -175,7 +173,8 @@
       <workItem from="1562729841395" duration="12503000" />
       <workItem from="1562744033698" duration="1787000" />
       <workItem from="1562747133708" duration="22538000" />
-      <workItem from="1562798169876" duration="42819000" />
+      <workItem from="1562798169876" duration="43700000" />
+      <workItem from="1562865203670" duration="176000" />
     </task>
     <task id="LOCAL-00001" summary="Merge branch 'master' of https://github.com/arioki1/Bukalapak-Clone-Back-End&#10;&#10;# Conflicts:&#10;#&#9;controllers/products.js&#10;#&#9;controllers/users.js&#10;#&#9;libs/response.js&#10;#&#9;models/auth.js&#10;#&#9;models/products.js&#10;#&#9;models/users.js&#10;#&#9;package-lock.json&#10;#&#9;package.json&#10;#&#9;routes/users.js&#10;#&#9;server.js">
       <created>1562738968544</created>
@@ -226,24 +225,30 @@
       <option name="project" value="LOCAL" />
       <updated>1562825289347</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="finish upload image profile">
+      <created>1562850418756</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1562850418791</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="79841000" />
+    <option name="totallyTimeSpent" value="80898000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4958904" visible="true" weight="0.2602118" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4958904" visible="true" weight="0.26399395" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
       <window_info id="Capture Tool" order="5" />
       <window_info id="Favorites" order="6" sideWeight="0.50410956" side_tool="true" weight="0.2602118" />
-      <window_info anchor="bottom" id="Messages" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -254,8 +259,9 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.4977307" weight="0.46153846" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.4977307" weight="0.2458194" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.4977307" visible="true" weight="0.2458194" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50226927" side_tool="true" weight="0.32608697" />
+      <window_info anchor="bottom" id="Messages" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -325,6 +331,20 @@
         </entry>
       </map>
     </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Merge branch 'master' of https://github.com/arioki1/Bukalapak-Clone-Back-End&#10;&#10;# Conflicts:&#10;#&#9;controllers/products.js&#10;#&#9;controllers/users.js&#10;#&#9;libs/response.js&#10;#&#9;models/auth.js&#10;#&#9;models/products.js&#10;#&#9;models/users.js&#10;#&#9;package-lock.json&#10;#&#9;package.json&#10;#&#9;routes/users.js&#10;#&#9;server.js" />
@@ -335,7 +355,8 @@
     <MESSAGE value="finish api cart" />
     <MESSAGE value="error relasio" />
     <MESSAGE value="error relations address to user" />
-    <option name="LAST_COMMIT_MESSAGE" value="error relations address to user" />
+    <MESSAGE value="finish upload image profile" />
+    <option name="LAST_COMMIT_MESSAGE" value="finish upload image profile" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
@@ -471,13 +492,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/uploadImage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/models/uploadImage.js" />
     <entry file="file://$PROJECT_DIR$/config/.env">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -566,18 +581,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/users.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="91">
-          <caret line="135" column="22" lean-forward="true" selection-start-line="135" selection-start-column="22" selection-end-line="135" selection-end-column="22" />
-          <folding>
-            <element signature="e#219#870#0" />
-          </folding>
+        <state relative-caret-position="2295">
+          <caret line="135" column="22" selection-start-line="135" selection-start-column="22" selection-end-line="135" selection-end-column="22" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/auth.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="516">
-          <caret line="102" column="2" lean-forward="true" selection-start-line="102" selection-start-column="2" selection-end-line="102" selection-end-column="2" />
+        <state relative-caret-position="238">
+          <caret line="17" column="45" selection-start-line="17" selection-start-column="45" selection-end-line="17" selection-end-column="45" />
+          <folding>
+            <element signature="e#1254#2621#0" />
+          </folding>
         </state>
       </provider>
     </entry>

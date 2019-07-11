@@ -9,15 +9,13 @@ exports.login = async (req, res) => {
     //declare http request
     let username = req.body.username;
     let password = req.body.password;
-
+    console.log(req.body);
     //search user by username and email
     let check = await userModel.findOne({
         $or: [{username: username},
             {email: username}]
-    }).then(data => {
-        console.log(data)
     }).catch(e => {
-        console.log(e)
+        response.error('User not found', res);
     });
 
     //if check false
