@@ -83,7 +83,17 @@ const UsersSchema = new mongoose.Schema({
         wishlist: {
             type: Array,
             default: []
-        }
+        },
+        carts: [{
+            name :{
+                type:String,
+                default:''
+            },
+            productId :{
+                type:String,
+                default:''
+            }
+        }]
     },
     {
         timestamps: true

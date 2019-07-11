@@ -58,12 +58,14 @@ const routeProduct =  require('./routes/product');
 const routeAddress =  require('./routes/address');
 const routeCategories =  require('./routes/categories');
 const routeAuth =  require('./routes/auth');
+const routeCarts =  require('./routes/carts');
 
 routeUsers(app);
 routeProduct(app);
 routeAddress(app);
 routeCategories(app);
 routeAuth(app);
+routeCarts(app);
 
 app.get('/', function (req, res) {
     res.send('Welcome to server');
