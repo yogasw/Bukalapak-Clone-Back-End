@@ -50,8 +50,7 @@ exports.addCarts = async function (req, res) {
         return response.error('error get data users', res);
     }
 
-
-    await userModel.updateOne()
+    await userModel.updateOne
     (
         {_id: usersId},
         {$push: {carts: product}}
@@ -95,7 +94,7 @@ exports.deleteCarts = async (req, res) => {
             multi: true
         }
     ).then(data=>{
-        response.success(data,res)
+        response.success({id: id}, res)
     }).catch(e=>{
         response.error(e,res)
     })
