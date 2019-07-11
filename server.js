@@ -7,27 +7,6 @@ const app = express();
 const bodyParser = require('body-parser');
 const port = process.env.SERVER_PORT;
 const cors = require('cors');
-//const cors = require('../rds-combined-ca-bundle.pem');
-
-//Configure Database
-var fs = require('fs');
-var ca = [fs.readFileSync('../rds-combined-ca-bundle.pem')];
-
-const dbConfig = require('./config/database');
-const mongoose = require('mongoose');
-mongoose.Promise = global.Promise;
-mongoose.connect(dbConfig.DB, {
-    dbName: 'bukalapak',
-    useNewUrlParser: true,
-    useFindAndModify: false
-}).then(() => {
-    console.log('connection success');
-}).catch(err => {
-    console.log(`connection error `, err);
-    process.exit();
-});
-
-//End Configure Database
 
 //Start Config CORS
 const whitelist = ['http://192.168.6.101', 'chrome-extension://fhbjgbiflinjbdggehcddcbncdddomop', undefined];
@@ -59,6 +38,7 @@ const routeAddress =  require('./routes/address');
 const routeCategories =  require('./routes/categories');
 const routeAuth =  require('./routes/auth');
 const routeCarts =  require('./routes/carts');
+const routeWishlist =  require('./routes/wishlist');
 
 routeUsers(app);
 routeProduct(app);
@@ -66,6 +46,7 @@ routeAddress(app);
 routeCategories(app);
 routeAuth(app);
 routeCarts(app);
+routeWishlist(app);
 
 app.get('/', function (req, res) {
     res.send('Welcome to server');

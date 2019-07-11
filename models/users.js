@@ -54,10 +54,16 @@ const UsersSchema = new mongoose.Schema({
             type: String,
             default: ''
         },
-        wishlist: {
-            type: Array,
-            default: []
-        },
+        wishlist: [{
+            name :{
+                type:String,
+                default:''
+            },
+            productId :{
+                type:String,
+                default:''
+            }
+        }],
         carts: [{
             name :{
                 type:String,
