@@ -4,10 +4,12 @@ const mongoose = require('mongoose');
 const Categories = new mongoose.Schema({
     name: {
         type: String,
-        require: true
+        required: true,
+        default: ''
     },
     children: [{
-        name: String
+        name: String,
+        default: ''
     }]
 }, {
     timestamps: true
