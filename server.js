@@ -7,6 +7,29 @@ const app = express();
 const bodyParser = require('body-parser');
 const port = process.env.SERVER_PORT;
 const cors = require('cors');
+const multer = require('multer');
+
+//const cors = require('../rds-combined-ca-bundle.pem');
+
+//Configure Database
+var fs = require('fs');
+var ca = [fs.readFileSync('../rds-combined-ca-bundle.pem')];
+
+const dbConfig = require('./config/database');
+const mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
+mongoose.connect(dbConfig.DB, {
+    dbName: 'bukalapak',
+    useNewUrlParser: true,
+    useFindAndModify: false
+}).then(() => {
+    console.log('connection success');
+}).catch(err => {
+    console.log(`connection error `, err);
+    process.exit();
+});
+
+//End Configure Database
 
 //Start Config CORS
 const whitelist = ['http://192.168.6.101', 'chrome-extension://fhbjgbiflinjbdggehcddcbncdddomop', undefined];

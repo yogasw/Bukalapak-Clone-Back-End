@@ -101,6 +101,7 @@ exports.uploadFotoProfil = async (req, res) => {
         try {
             const upload = multer({storage}).single('image');
             upload(req, res, function (err) {
+
                 if (err) {
                     return res.send(err)
                 }
@@ -124,9 +125,13 @@ exports.uploadFotoProfil = async (req, res) => {
                         UserModels.findOneAndUpdate(
                             {_id:token._id}
                             ,{
-                                $set:{imageUrl:data.Location}
+                                imageUrl: data.Location
                             }
-                        );
+                        ).then(data => {
+                            console.log(data)
+                        }).catch(data => {
+                            console.log(err)
+                        });
                         return response.success(data.Location, res);
                     })
                 });

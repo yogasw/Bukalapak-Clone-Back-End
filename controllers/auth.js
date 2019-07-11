@@ -6,7 +6,6 @@ const bcrypt = require('bcrypt');
 const _ = require('lodash');
 
 exports.login = async (req, res) => {
-console.log("masuk 1");
     //declare http request
     let username = req.body.username;
     let password = req.body.password;
@@ -15,8 +14,12 @@ console.log("masuk 1");
     let check = await userModel.findOne({
         $or: [{username: username},
             {email: username}]
+    }).then(data => {
+        console.log(data)
+    }).catch(e => {
+        console.log(e)
     });
-    console.log("masuk 2")
+
     //if check false
     if (!check) {
         return res.status(400).json({
@@ -24,7 +27,7 @@ console.log("masuk 1");
             message: 'User not found.'
         })
     }
-    console.log("masuk 3")
+
     //validate password
     const validPassword = await bcrypt.compare(password, check.password);
     if (!validPassword){
@@ -33,15 +36,15 @@ console.log("masuk 1");
             message: 'Wrong password.'
         })
     }
-    console.log("masuk 4")
+
     const token = check.generateAuthToken();
     res.header('x-auth-token', token);
-    console.log("masuk 5")
+
     res.json({
         status:200,
         data: _.pick(check, ['_id', 'username', 'email']),
     });
-    console.log("masuk 6")
+
     res.end()
 };
 
