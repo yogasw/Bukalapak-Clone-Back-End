@@ -11,6 +11,7 @@ exports.getUsers = async (req, res) => {
         return response.error('error get data users', res);
     }
     await UserModels.findOne({_id: token._id})
+    // .populate({path:'Address',select:[token._id]})
         .then(data => {
             let json = {
                 message: 'success get data users',
@@ -19,12 +20,7 @@ exports.getUsers = async (req, res) => {
             response.success(json, res)
         })
         .catch(err => {
-            let json = {
-                status: 500,
-                message: 'Error get data users'
-            };
-
-            response.withCode(500,json,res)
+            response.error('Error get data users', res)
         })
 
 };

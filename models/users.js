@@ -45,37 +45,11 @@ const UsersSchema = new mongoose.Schema({
             type: String,
             default: ''
         },
-        address: {
-            type: String,
-            default: ''
-        },
-        /* [{
-             name:{
-                 type: String,
-                 default:'1'
-             },
-             phoneNumber:{
-                 type: String,
-                 default:'2'
-             },
-             usersId:{
-                 type: String,
-                 default:''
-             },
-             address:{
-                 type: String,
-                 default:''
-             },
-             receiver:{
-                 type: String,
-                 default:''
-             },
-             zipCode:{
-                 type: String,
-                 default:''
-             },
-         }]*/
-
+        /* address: {
+             type: mongoose.Schema.Types.ObjectId,
+             ref:'Address',
+             default: ''
+         },*/
         password: {
             type: String,
             default: ''

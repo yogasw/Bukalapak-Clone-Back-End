@@ -4,27 +4,27 @@ const mongoose = require('mongoose');
 const AdressSchema = new mongoose.Schema({
     name: {
         type: String,
-        require: true
+        required: true,
     },
     phoneNumber: {
         type: String,
-        require: true
+        required: true
     },
     userId: {
         type: String,
-        require: true
+        required: true
     },
     address: {
         type: String,
-        require: true
+        required: true
     },
     receiver: {
         type: String,
-        require: true
+        required: true
     },
     zipCode: {
         type: String,
-        require: true
+        required: true
     }
 }, {
     timestamps: true
