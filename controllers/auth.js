@@ -53,7 +53,6 @@ exports.register = async (req, res) => {
     let username = req.body.username;
     let password = req.body.password;
     let referral = req.body.referral;
-
     const data = new userModel({
         name,
         email,
@@ -70,10 +69,10 @@ exports.register = async (req, res) => {
 
     if (check) {
         let json = {
-            status: 200,
+            status: 'failed',
             message: 'That user already exisits!',
         };
-        return response.success(json, res);
+        return response.error(json, res);
     } else {
         await data.save()
             .then(val => {
@@ -87,15 +86,9 @@ exports.register = async (req, res) => {
                 res.header('x-auth-token', token);
                 res.json(json);
                 res.end()
-
             })
             .catch(err => {
-                let json = {
-                    status: 500,
-                    message: 'failed register user' + err,
-                };
-
-                return response.withCode(500, json, res);
-            })
+                return response.error('failed register user', res);
+            });
     }
 };

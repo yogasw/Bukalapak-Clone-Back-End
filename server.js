@@ -8,7 +8,9 @@ const bodyParser = require('body-parser');
 const port = process.env.SERVER_PORT;
 const cors = require('cors');
 const multer = require('multer');
-
+const dateFormat = require('dateformat');
+const {sendSms} = require('./libs/sendSms');
+const {sendVoce} = require('./libs/sendVoice');
 //const cors = require('../rds-combined-ca-bundle.pem');
 
 //Configure Database
@@ -51,6 +53,12 @@ app.use(
     bodyParser.urlencoded({
         extended: true
     }),
+    function (req, res, next) {
+        console.log("[LOG]");
+        console.log(`\nTIME : ${dateFormat(new Date(), "yyyy-mm-dd h:MM:ss")} \nHOST : ${req.headers.host} \nURL : ${req.url} \nMETHOD : ${req.method} \nUser Agent : ${req.headers["useragent"]} \n`);
+        next();
+
+    },
     bodyParser.json(),
     //use CORS
     cors(corsOptions),
@@ -72,6 +80,8 @@ routeCarts(app);
 routeWishlist(app);
 
 app.get('/', function (req, res) {
+    //sendSms('6282329949292', 'JANGAN BERIKAN KODE RAHASIA ini kepada siapa pun TERMASUK PIHAK BUKALAPAK. Kode otentikasi');
+    //sendVoce('6283829832340','sms verifikasi anda adalah 2909');
     res.send('Welcome to server');
 });
 
