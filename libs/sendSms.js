@@ -83,10 +83,12 @@ exports.sendSms = (numberPhone, message) => {
         // If something goes wrong, print an error message.
         if (err) {
             console.log(err.message);
+            return false;
             // Otherwise, show the unique ID for the message.
         } else {
             console.log("Message sent! "
                 + data['MessageResponse']['Result'][destinationNumber]['StatusMessage']);
+            return true;
         }
     });
 

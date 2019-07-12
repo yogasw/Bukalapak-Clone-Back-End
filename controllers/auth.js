@@ -1,6 +1,10 @@
 'use strict';
+
+const {sendSms} = require('../libs/sendSms');
 const response = require('../libs/response');
 const userModel = require('../models/users');
+const authModel = require('../models/auth');
+
 //const authModel = require('../models/auth');
 const bcrypt = require('bcrypt');
 const _ = require('lodash');
@@ -28,9 +32,9 @@ exports.login = async (req, res) => {
 
     //validate password
     const validPassword = await bcrypt.compare(password, check.password);
-    if (!validPassword){
+    if (!validPassword) {
         return res.status(400).json({
-            status:400,
+            status: 400,
             message: 'Wrong password.'
         })
     }
@@ -39,7 +43,7 @@ exports.login = async (req, res) => {
     res.header('x-auth-token', token);
 
     res.json({
-        status:200,
+        status: 200,
         data: _.pick(check, ['_id', 'username', 'email']),
     });
 
@@ -91,4 +95,43 @@ exports.register = async (req, res) => {
                 return response.error('failed register user', res);
             });
     }
+};
+
+exports.getOTP = async (req, res) => {
+    let min = 11111;
+    let max = 99999;
+    let token = Math.floor(Math.random() * (max - min) + min);
+    let phoneNumber = req.body.phoneNumber;
+
+    //let otp = sendSms(phoneNumber, 'ANGAN BERIKAN KODE RAHASIA ini kepada siapa pun TERMASUK PIHAK BUKALAPAK. Kode otentikasi anda adalah : ' + token);
+
+    if (true) {
+        const data = {
+            token,
+            phoneNumber
+        };
+
+        authModel.update({
+            phoneNumber: phoneNumber
+        }, {
+            token,
+            phoneNumber
+        }, {
+            upsert: true
+        })
+            .then(respon => {
+                response.success(data, res)
+            }).catch(e => {
+            response.error(e, res);
+        })
+    } else {
+        response.error("system error", res);
+    }
+};
+exports.cekOTP = async (req, res) => {
+    let token = req.body.token;
+    let phoneNumber = req.body.phoneNumber;
+
+    let check = await authModel.find({ token: token, phoneNumber: phoneNumber });
+    response.error(check,res);
 };
