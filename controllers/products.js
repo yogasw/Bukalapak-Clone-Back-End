@@ -8,30 +8,38 @@ const helper = require('../libs/helper');
 
 exports.getProduct = async (req, res) => {
 
-    let search = {};
+    let search = req.query.search ? req.query.search : '';
+    let limit = req.query.limit ? parseInt(req.query.limit) : 10;
+    let filter = req.query.filter ? req.query.filter : 'updatedAt';
+    let page = req.query.page ? parseInt(req.query.page) : 1;
+    let offset = (page - 1) * limit;
+    let sort = req.query.sort ? req.query.sort.toLowerCase() : 'desc';
+    let totalRows;
 
-    Object.keys(req.query).forEach(function (key) {
+    await ProductModel.countDocuments({
+        'name': {$regex: search, $options: 'i'}
+    })
+        .then(data => totalRows = data);
 
-        if (key == 'id') {
-            search['_id'] = req.query.id
-        }
-        // else if(key == 'name'){
-        //     let a = req.query.name;
-        //     search['name'] =
-        // }
-        else if (key == 'productId') {
-            search['productId'] = req.query.productId
-        }
-    });
+    let totalPage = Math.ceil(parseInt(totalRows) / limit);
 
-    await ProductModel.find(search)
-        .sort({createdAt: 'desc'})
+    await ProductModel.find({
+        'name': {$regex: search, $options: 'i'}
+    })
+        .sort({[filter]: sort})
+        .limit(limit)
+        .skip(offset)
         .then(data => {
             let json = {
                 status: 200,
                 message: 'success get data product',
-                data: data
+                totalRows,
+                limit,
+                page,
+                totalPage,
+                data
             };
+
             response.success(json, res)
         })
         .catch(err => {
@@ -43,6 +51,16 @@ exports.getProduct = async (req, res) => {
             response.withCode(500, json, res)
         })
 
+};
+
+exports.getById = async (req, res) => {
+    await ProductModel.findById(req.params.id)
+        .then(data => (
+            response.success(data, res)
+        ))
+        .catch(err => (
+            response.error('Error get prouct', res)
+        ))
 };
 
 exports.addProduct = async function (req, res) {
@@ -103,7 +121,6 @@ exports.addProduct = async function (req, res) {
             response.withCode(500, json, res)
         })
 };
-
 exports.deleteProduct = async (req, res) => {
     let id = req.params.id;
 
