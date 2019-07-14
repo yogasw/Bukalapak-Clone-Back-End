@@ -80,7 +80,8 @@ exports.addProduct = async function (req, res) {
     let stock = req.body.stock;
     let weight = req.body.weight;
     let image = req.body.image;
-
+    let rate = req.body.rate;
+    let description = req.body.description;
     try {
         let checkCategory = await CategoriesModel.findById({_id: categoriesId});
 
@@ -100,7 +101,9 @@ exports.addProduct = async function (req, res) {
         stock,
         weight,
         status,
+        description,
         image,
+        rate,
     });
 
     await product.save()

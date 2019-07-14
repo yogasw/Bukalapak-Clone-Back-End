@@ -29,9 +29,12 @@ const ProductSchema = new mongoose.Schema({
     },status :{
         type:String,
         default: ''
+    },description :{
+        type:String,
+        default: ''
     },image:{
         type:Array,
-    },rating:{
+    },rate:{
         type: Number,
         default: 0
     }
