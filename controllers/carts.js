@@ -32,11 +32,9 @@ exports.addCarts = async function (req, res) {
     let usersId = token._id;
 
     //input from request
-    let name = req.body.name;
     let productId = req.body.productId;
 
     const product = {
-        name,
         productId,
     };
 

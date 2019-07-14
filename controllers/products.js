@@ -89,7 +89,7 @@ exports.addProduct = async function (req, res) {
             return response.error('error get data category', res);
         }
     } catch (e) {
-        return response.error('error add data category', res);
+        return response.error('error get data category', res);
     }
 
 
