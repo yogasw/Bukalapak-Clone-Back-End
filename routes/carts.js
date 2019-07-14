@@ -1,7 +1,7 @@
 'use strict';
-const carts = require ('../controllers/carts');
+const carts = require('../controllers/cart');
 module.exports = function (app) {
-    app.route('/carts').post(carts.addCarts);
-    app.route('/carts/:id').delete(carts.deleteCarts);
-    app.route('/carts').get(carts.getCarts);
+    app.route('/carts').post(carts.addCart);
+    app.route('/carts/:id').delete(carts.deleteCart);
+    app.route('/carts').get(carts.getCart);
 };

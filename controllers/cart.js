@@ -1,10 +1,13 @@
 'use strict';
 const response = require('../libs/response');
 const userModel = require('../models/users');
+const productModel = require('../models/products');
+const cartModel = require('../models/cart');
+
 const _ = require('lodash');
 const helper = require('../libs/helper');
 
-exports.getCarts = async (req, res) => {
+exports.getCart = async (req, res) => {
 
     const token = helper.decodeJwt(req.header('x-auth-token'));
 
@@ -14,32 +17,35 @@ exports.getCarts = async (req, res) => {
 
     let usersId = token._id;
 
-    await userModel.findById(usersId)
+    await cartModel.find({user: usersId})
+        .populate({path: 'product', model: 'Product'})
+        .exec()
         .then(data => {
-            response.success(_.pick(data, ['carts']), res);
+            response.success(data, res);
         })
         .catch(err => {
-            response.error('error get data carts', res);
+            response.error('error get data cart', res);
         });
 };
-exports.addCarts = async function (req, res) {
+exports.addCart = async function (req, res) {
     const token = helper.decodeJwt(req.header('x-auth-token'));
 
     if (!token._id) {
         return response.error('error get data user', res);
     }
 
-    let usersId = token._id;
+    let user = token._id;
 
     //input from request
-    let productId = req.body.productId;
+    let product = req.body.productId;
 
-    const product = {
-        productId,
-    };
+    const cart = new cartModel({
+        user,
+        product
+    });
 
     try {
-        let idUser = await userModel.findById({_id: usersId});
+        let idUser = await userModel.findById({_id: user});
 
         if (!idUser) {
             return response.error('error get data users', res);
@@ -48,17 +54,11 @@ exports.addCarts = async function (req, res) {
         return response.error('error get data users', res);
     }
 
-    await userModel.updateOne
-    (
-        {_id: usersId},
-        {$push: {carts: product}}
-    )
+    await cart.save()
         .then(data => {
-
             let json = {
-                status: 200,
-                message: 'success add data carts',
-                data: product
+                message: 'success add data Cart',
+                data: data
             };
 
             response.success(json, res)
@@ -67,30 +67,25 @@ exports.addCarts = async function (req, res) {
         .catch(err => {
             let json = {
                 status: 500,
-                message: 'Error add data carts'
+                message: 'Error add data Cart'
             };
 
-            response.withCode(500, json, res)
+            response.error(json, res)
         })
 };
-exports.deleteCarts = async (req, res) => {
+exports.deleteCart = async (req, res) => {
     let id = req.params.id;
     const token = helper.decodeJwt(req.header('x-auth-token'));
 
     if (!token._id) {
-        return response.error('error get data seller', res);
+        return response.error('error get data user', res);
     }
 
-    userModel.updateOne(
-        {_id:token._id},
+    cartModel.deleteOne(
         {
-            $pull: {
-                carts: {productId:id}
-            }
+            product: id,
+            user: token._id
         },
-        {
-            multi: true
-        }
     ).then(data=>{
         response.success({id: id}, res)
     }).catch(e=>{
