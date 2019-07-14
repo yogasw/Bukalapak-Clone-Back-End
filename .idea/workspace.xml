@@ -65,8 +65,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/controllers/cart.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="434">
-              <caret line="39" column="36" selection-start-line="39" selection-start-column="27" selection-end-line="39" selection-end-column="36" />
+            <state relative-caret-position="661">
+              <caret line="46" column="9" lean-forward="true" selection-start-line="46" selection-start-column="9" selection-end-line="46" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -93,7 +93,7 @@
         <entry file="file://$PROJECT_DIR$/models/withlist.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="187">
-              <caret line="11" column="10" lean-forward="true" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
+              <caret line="11" column="10" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -165,6 +165,7 @@
     </findStrings>
   </component>
   <component name="Git.Settings">
+    <option name="PUSH_AUTO_UPDATE" value="true" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
@@ -312,7 +313,7 @@
       <workItem from="1562865203670" duration="438000" />
       <workItem from="1562930805427" duration="2006000" />
       <workItem from="1562932861263" duration="20005000" />
-      <workItem from="1563092134262" duration="9208000" />
+      <workItem from="1563092134262" duration="9668000" />
     </task>
     <task id="LOCAL-00001" summary="Merge branch 'master' of https://github.com/arioki1/Bukalapak-Clone-Back-End&#10;&#10;# Conflicts:&#10;#&#9;controllers/products.js&#10;#&#9;controllers/users.js&#10;#&#9;libs/response.js&#10;#&#9;models/auth.js&#10;#&#9;models/products.js&#10;#&#9;models/users.js&#10;#&#9;package-lock.json&#10;#&#9;package.json&#10;#&#9;routes/users.js&#10;#&#9;server.js">
       <created>1562738968544</created>
@@ -391,14 +392,22 @@
       <option name="project" value="LOCAL" />
       <updated>1562947665943</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="add wishlist and cart">
+      <created>1563102744461</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1563102744461</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="112379000" />
+    <option name="totallyTimeSpent" value="112839000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4958904" visible="true" weight="0.20272315" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -417,7 +426,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.4977307" weight="0.33110368" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.4969743" visible="true" weight="0.35953176" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.4969743" weight="0.35953176" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5030257" side_tool="true" weight="0.21906355" />
       <window_info anchor="bottom" id="Messages" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -517,7 +526,8 @@
     <MESSAGE value="fix error auth" />
     <MESSAGE value="send sms and config auth" />
     <MESSAGE value="fix search and serch by id and pagination" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix search and serch by id and pagination" />
+    <MESSAGE value="add wishlist and cart" />
+    <option name="LAST_COMMIT_MESSAGE" value="add wishlist and cart" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
@@ -763,7 +773,7 @@
     <entry file="file://$PROJECT_DIR$/models/withlist.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
-          <caret line="11" column="10" lean-forward="true" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
+          <caret line="11" column="10" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
         </state>
       </provider>
     </entry>
@@ -811,8 +821,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/cart.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="434">
-          <caret line="39" column="36" selection-start-line="39" selection-start-column="27" selection-end-line="39" selection-end-column="36" />
+        <state relative-caret-position="661">
+          <caret line="46" column="9" lean-forward="true" selection-start-line="46" selection-start-column="9" selection-end-line="46" selection-end-column="9" />
         </state>
       </provider>
     </entry>
