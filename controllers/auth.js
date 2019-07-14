@@ -103,7 +103,7 @@ exports.getOTP = async (req, res) => {
     let token = Math.floor(Math.random() * (max - min) + min);
     let phoneNumber = req.body.phoneNumber;
 
-    //let otp = sendSms(phoneNumber, 'ANGAN BERIKAN KODE RAHASIA ini kepada siapa pun TERMASUK PIHAK BUKALAPAK. Kode otentikasi anda adalah : ' + token);
+    let otp = sendSms(phoneNumber, 'ANGAN BERIKAN KODE RAHASIA ini kepada siapa pun TERMASUK PIHAK BUKALAPAK. Kode otentikasi anda adalah : ' + token);
 
     if (true) {
         const data = {

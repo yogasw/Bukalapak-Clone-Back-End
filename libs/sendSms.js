@@ -1,10 +1,10 @@
 'use strict';
 
 var AWS = require('aws-sdk');
-
+console.log("Masuk")
 
 exports.sendSms = (numberPhone, message) => {
-
+    console.log("Masuk")
 // The AWS Region that you want to use to send the message. For a list of
 // AWS Regions where the Amazon Pinpoint API is available, see
 // https://docs.aws.amazon.com/pinpoint/latest/apireference/.
@@ -82,7 +82,7 @@ exports.sendSms = (numberPhone, message) => {
     pinpoint.sendMessages(params, function (err, data) {
         // If something goes wrong, print an error message.
         if (err) {
-            console.log(err.message);
+            console.log(err);
             return false;
             // Otherwise, show the unique ID for the message.
         } else {

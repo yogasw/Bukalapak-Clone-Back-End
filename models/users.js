@@ -54,24 +54,21 @@ const UsersSchema = new mongoose.Schema({
             type: String,
             default: ''
         },
-        wishlist: [{
-            name :{
-                type:String,
-                default:''
-            },
-            productId :{
-                type:String,
-                default:''
-            }
-        }],
+        wishlist: [
+            {
+                productId: [{
+                    type: mongoose.Schema.Types.ObjectId,
+                    ref: 'Product'
+                }],
+            }],
         carts: [{
-            name :{
-                type:String,
-                default:''
+            name: {
+                type: String,
+                default: ''
             },
-            productId :{
-                type:String,
-                default:''
+            productId: {
+                type: String,
+                default: ''
             }
         }]
     },

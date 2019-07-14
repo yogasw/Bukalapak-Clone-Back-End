@@ -1,6 +1,9 @@
 'use strict';
 const response = require('../libs/response');
 const userModel = require('../models/users');
+const productModel = require('../models/products');
+const withlistModel = require('../models/withlist');
+
 const _ = require('lodash');
 const helper = require('../libs/helper');
 
@@ -14,9 +17,11 @@ exports.getWishlist = async (req, res) => {
 
     let usersId = token._id;
 
-    await userModel.findById(usersId)
+    await withlistModel.find({user: usersId})
+        .populate({path: 'product', model: 'Product'})
+        .exec()
         .then(data => {
-            response.success(_.pick(data, ['wishlist']), res);
+            response.success(data, res);
         })
         .catch(err => {
             response.error('error get data wishlist', res);
@@ -29,19 +34,18 @@ exports.addWishlist = async function (req, res) {
         return response.error('error get data user', res);
     }
 
-    let usersId = token._id;
+    let user = token._id;
 
     //input from request
-    let name = req.body.name;
-    let productId = req.body.productId;
+    let product = req.body.productId;
 
-    const product = {
-        name,
-        productId,
-    };
+    const wishlist = new withlistModel({
+        user,
+        product
+    });
 
     try {
-        let idUser = await userModel.findById({_id: usersId});
+        let idUser = await userModel.findById({_id: user});
 
         if (!idUser) {
             return response.error('error get data users', res);
@@ -50,16 +54,11 @@ exports.addWishlist = async function (req, res) {
         return response.error('error get data users', res);
     }
 
-    await userModel.updateOne
-    (
-        {_id: usersId},
-        {$push: {wishlist: product}}
-    )
+    await wishlist.save()
         .then(data => {
-
             let json = {
                 message: 'success add data Wishlist',
-                data: product
+                data: data
             };
 
             response.success(json, res)
@@ -71,7 +70,7 @@ exports.addWishlist = async function (req, res) {
                 message: 'Error add data Wishlist'
             };
 
-            response.withCode(500, json, res)
+            response.error(json, res)
         })
 };
 exports.deleteWishlist = async (req, res) => {
@@ -82,16 +81,11 @@ exports.deleteWishlist = async (req, res) => {
         return response.error('error get data user', res);
     }
 
-    userModel.updateOne(
-        {_id:token._id},
+    withlistModel.deleteOne(
         {
-            $pull: {
-                wishlist: {_id:id}
-            }
+            product: id,
+            user: token._id
         },
-        {
-            multi: true
-        }
     ).then(data=>{
         response.success({id: id}, res)
     }).catch(e=>{
