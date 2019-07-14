@@ -11,3 +11,4 @@ In this repository only for the backend section, for the frontend section can be
 ### Related Project
 
 * [Frontend](https://github.com/fdlnfjrrmdni/Bukalapak-Clone-Frontend)
+ 
