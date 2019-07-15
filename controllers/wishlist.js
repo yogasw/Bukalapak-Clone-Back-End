@@ -44,6 +44,9 @@ exports.addWishlist = async function (req, res) {
 
     //input from request
     let product = req.body.productId;
+    if (product == '') {
+        return response.error('error get data product', res);
+    }
 
     const wishlist = new withlistModel({
         user,

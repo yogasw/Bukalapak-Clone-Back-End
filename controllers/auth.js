@@ -102,8 +102,8 @@ exports.getOTP = async (req, res) => {
     let max = 99999;
     let token = Math.floor(Math.random() * (max - min) + min);
     let phoneNumber = req.body.phoneNumber;
-
-    let otp = sendSms(phoneNumber, 'ANGAN BERIKAN KODE RAHASIA ini kepada siapa pun TERMASUK PIHAK BUKALAPAK. Kode otentikasi anda adalah : ' + token);
+    console.log(phoneNumber);
+    let otp = sendSms(phoneNumber, 'JANGAN BERIKAN KODE RAHASIA ini kepada siapa pun TERMASUK PIHAK BUKALAPAK. Kode otentikasi anda adalah : ' + token);
 
     if (true) {
         const data = {

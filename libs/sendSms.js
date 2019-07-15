@@ -4,8 +4,9 @@ var AWS = require('aws-sdk');
 console.log("Masuk")
 
 exports.sendSms = (numberPhone, message) => {
-    const accountSid = 'AC9d4f0f0bd8da6bcd5def8a7e74d0f1e6';
-    const authToken = '[AuthToken]';
+    console.log(numberPhone);
+    const accountSid = process.env.TWILOaccountSid;
+    const authToken = process.env.TWILOauthToken;
     const client = require('twilio')(accountSid, authToken);
 
     client.messages
@@ -17,6 +18,10 @@ exports.sendSms = (numberPhone, message) => {
         .then(message =>
         {
             return message.sid;
+        })
+        .catch(e => {
+            console.log(e);
+            return false;
         })
         .done();
 
