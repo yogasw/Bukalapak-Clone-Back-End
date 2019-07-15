@@ -21,12 +21,18 @@ exports.getWishlist = async (req, res) => {
         .populate({path: 'product', model: 'Product'})
         .exec()
         .then(data => {
+            let dataNew = [];
+
+            data.forEach((i)=>{
+                dataNew.push(i.product);
+            });
             response.success(data, res);
         })
         .catch(err => {
             response.error('error get data wishlist', res);
         });
 };
+
 exports.addWishlist = async function (req, res) {
     const token = helper.decodeJwt(req.header('x-auth-token'));
 
@@ -83,11 +89,10 @@ exports.deleteWishlist = async (req, res) => {
 
     withlistModel.deleteOne(
         {
-            product: id,
-            user: token._id
+            _id: id,
         },
     ).then(data=>{
-        response.success({id: id}, res)
+        response.success({id:id}, res)
     }).catch(e=>{
         response.error(e,res)
     })
